@@ -247,6 +247,7 @@ $chat-back-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000
     position: fixed;
     top: 0;
     right: 0;
+    left: 8.5rem; // clear of the list's back, up to "Back to Forum" at 375px
     z-index: 1001; // over the header (1000)
     height: var(--header-offset);
     align-items: center;
@@ -262,21 +263,6 @@ $chat-back-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000
 
     .c-routes .c-navbar-container {
       left: 0;
-    }
-  }
-
-  // On a list, the back and its title share .c-header's row, which is what aligns them.
-  // The navbar keeps only its actions; the bottom bar already says which list this is.
-  &:not(:has(.c-navbar__back-button)) {
-    .c-header .c-heading {
-      display: block;
-      margin: 0 0 0 var(--space-2);
-      padding: 0;
-      font-size: var(--font-0);
-    }
-
-    .c-routes .c-navbar__title {
-      display: none;
     }
   }
 
