@@ -12,6 +12,7 @@ import ChatHeaderIconUnreadIndicator from "discourse/plugins/chat/discourse/comp
 class SidebarChatToggle extends Component {
   @service chat;
   @service chatStateManager;
+  @service header;
   @service router;
 
   get isActive() {
@@ -20,6 +21,14 @@ class SidebarChatToggle extends Component {
 
   @action
   toggleChat() {
+    // On a phone the sidebar is the hamburger dropdown, and it stayed open over the chat.
+    // Through its own button, because that's what also releases the body scroll lock.
+    if (this.header.hamburgerVisible) {
+      document
+        .querySelector(".header-sidebar-toggle button, #toggle-hamburger-menu")
+        ?.click();
+    }
+
     if (this.chatStateManager.isDrawerActive) {
       // same as the drawer's own close button (chat/navbar/close-drawer-button.gjs)
       this.chatStateManager.didCloseDrawer();

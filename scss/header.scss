@@ -72,6 +72,12 @@ html:not(.anon)
   margin-left: auto;
 }
 
+// Grey at rest, like the bottom bar (--primary-high): Horizon's light violet was 2.15:1 on
+// the light header, and violet stays for what's active and for publishing.
+.d-header {
+  --d-header-icon-color: var(--primary-high);
+}
+
 // Less size on top right user header icons (larger global svgs compatibility)
 :where(.uc-modernize-foundation-theme) .header-sidebar-toggle button .d-icon,
 :where(.uc-modernize-foundation-theme)
