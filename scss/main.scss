@@ -392,6 +392,21 @@ body.category .navigation-controls,
   }
 }
 
+// "Back" stays in view while a panel's sidebar scrolls (profile, docs, admin). contents
+// makes the rows children of the scrolling .sidebar-sections: a sticky row would
+// otherwise leave with its header, and search and filter are free to scroll away.
+.sidebar-panel-header {
+  display: contents;
+}
+
+.sidebar-panel-header__row:first-child {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  flex-shrink: 0;
+  background: var(--d-sidebar-background);
+}
+
 // Chat is toggled from the sidebar footer instead (api-initializers/sidebar-chat-toggle.gjs)
 // — including the "forum" one shown in full-page chat, which the toggle also covers
 .sidebar__panel-switch-button[data-key="chat"],
