@@ -296,6 +296,18 @@ $chat-back-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000
   }
 }
 
+// Anonymous visitors have Log In where the title would go. Only public channels and no
+// list options to show them, so the list's navbar goes; in a channel it stops short.
+.mobile-view.anon .has-full-page-chat {
+  .c-routes .c-navbar-container {
+    right: 7rem;
+  }
+
+  &:not(:has(.c-navbar__back-button)) .c-routes .c-navbar-container {
+    display: none;
+  }
+}
+
 // Same air above and below the sticky list bar: the container's margin added to the bar's
 // own padding, leaving 28px under it against 11px over it.
 @include viewport.until(sm) {
