@@ -1,6 +1,18 @@
 // Hairline ring on every avatar, in the same 1px --primary-low Horizon uses for card
 // borders. A box-shadow rather than a border: it follows whatever shape Horizon clips the
 // avatar to (circle or rounded square) and doesn't change the image's size.
+//
+// The padding is air between the picture and the ring: symbols and faces drawn to the
+// edge of the image read as cramped. px per size, because % resolves against the parent.
 img.avatar {
+  padding: 2px;
   box-shadow: 0 0 0 1px var(--primary-low);
+}
+
+img.avatar:is([width="20"], [width="24"], [width="25"]) {
+  padding: 1px;
+}
+
+img.avatar:is([width="90"], [width="120"], [width="144"], [width="240"]) {
+  padding: 4px;
 }

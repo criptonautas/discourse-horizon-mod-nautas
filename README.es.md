@@ -32,7 +32,7 @@ instálalo junto a este.
 | `custom-user-menu.scss`, `d-combo-button.scss`, `groups.scss` | Menú de usuario, desplegables, páginas de grupos |
 | `ghost-cards.scss` | Tarjetas de marcador (bookmark) de Ghost dentro de temas de blog incrustados |
 | `form-templates.scss` | Títulos de checklist y checklist conmutado por desplegable en plantillas de formulario |
-| `avatars.scss` | Anillo fino (1px `--primary-low`) en todos los avatares, como los bordes de las tarjetas de Horizon |
+| `avatars.scss` | Anillo fino (1px `--primary-low`) con algo de aire alrededor de la imagen en todos los avatares |
 | `compatibility.scss` | Sobrescrituras que deben aplicarse después de todo lo demás |
 
 Los puntos de corte usan la librería de viewport del núcleo (`@include viewport.from/until(sm|md|lg)`),
