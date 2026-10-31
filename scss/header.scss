@@ -72,9 +72,9 @@ html:not(.anon)
   margin-left: auto;
 }
 
-// Grey at rest, like the bottom bar (--primary-high): Horizon's light violet was 2.15:1 on
-// the light header, and violet stays for what's active and for publishing.
-.d-header {
+// Phones only: grey at rest, like the bottom bar (--primary-high). Violet stays for what's
+// active and for publishing; desktop keeps Horizon's own colour.
+.mobile-view .d-header {
   --d-header-icon-color: var(--primary-high);
 }
 
