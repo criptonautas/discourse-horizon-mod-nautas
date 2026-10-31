@@ -231,3 +231,43 @@ body.f-nav-hidden:not(.archetype-regular,
     display: none;
   }
 }
+
+// Full-page chat on a phone: one top row. The chat's navbar moves into the forum header's
+// row, which keeps its background as the "you are here", and profile icons leave so they
+// don't mix with the chat's. Class renames in the plugin fall back to two rows.
+.mobile-view .has-full-page-chat {
+  .btn-sidebar-toggle,
+  .d-header-icons {
+    display: none;
+  }
+
+  .c-routes .c-navbar-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 7rem; // room for the list's "← Volver"
+    z-index: 1001; // over the header (1000)
+    height: var(--header-offset);
+    align-items: center;
+    border: 0;
+    background: transparent;
+  }
+
+  // Inside a chat the navbar's own back is the only one, so it takes the whole row.
+  &:has(.c-navbar__back-button) {
+    .back-to-forum {
+      display: none;
+    }
+
+    .c-routes .c-navbar-container {
+      left: 0;
+    }
+  }
+
+  // Labelled like docs and profile; title is the plugin's translated "back".
+  .c-navbar__back-button::after {
+    content: attr(title);
+    margin-left: var(--space-1);
+    color: var(--primary);
+  }
+}
