@@ -26,8 +26,9 @@ class ChatSidebarBack extends Component {
 }
 
 export default apiInitializer((api) => {
-  // lookup returns undefined when the chat plugin is off
-  if (!api.container.lookup("service:chat")?.userCanChat) {
+  // lookup returns undefined when the chat plugin is off. Not userCanChat: anonymous
+  // visitors can read public channels, and need the way back too.
+  if (!api.container.lookup("service:chat")) {
     return;
   }
 
