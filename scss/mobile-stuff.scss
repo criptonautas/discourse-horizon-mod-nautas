@@ -271,3 +271,11 @@ body.f-nav-hidden:not(.archetype-regular,
     color: var(--primary);
   }
 }
+
+// Same air above and below the sticky list bar: the container's margin added to the bar's
+// own padding, leaving 28px under it against 11px over it.
+@include viewport.until(sm) {
+  .list-controls .navigation-container {
+    margin-bottom: 0;
+  }
+}

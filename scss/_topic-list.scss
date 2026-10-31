@@ -50,3 +50,12 @@ $internal-status-tags: resuelto abierto;
     display: none !important;
   }
 }
+
+// Keep the new-posts badge beside the title. __title wraps (for the AI gist's own row), so
+// a long title took the whole line and pushed the badge under it. Basis 0 always leaves
+// the badge room; max-content keeps it right after a short title instead of far away.
+.hc-topic-card__title > .raw-topic-link {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: max-content;
+}
