@@ -14,7 +14,6 @@ html {
   --content-border-color: var(--primary-low);
   --d-border-radius-large: 17px;
   --success: var(--primary-800);
-  --d-hover-subtle: color-mix(in srgb, var(--d-hover), transparent 40%);
   --primary-25: color-mix(in srgb, var(--primary-50), var(--secondary) 50%);
   --category-1-color: none !important;
   --category-2-color: none !important;
@@ -925,12 +924,30 @@ nav.c-footer .c-footer__item {
   align-self: unset;
 }
 
-// Subtler chat message / transcript hover & active background
+// Chat message / transcript hover & active: the palette's selected colour, solid, because
+// a diluted hover read the same as the sidebar beside it.
 .no-touch .chat-message-container:hover,
 .no-touch .chat-transcript:hover,
 .no-touch .chat-message-container.-active,
 .no-touch .-active.chat-transcript {
-  background-color: var(--d-hover-subtle);
+  background-color: var(--d-selected);
+}
+
+// Inset and rounded, so the hover never runs into the sidebar's edge. Set at rest, not
+// on hover, so the message doesn't move.
+.chat-message-container {
+  width: auto;
+  margin-inline: var(--space-2);
+  border-radius: var(--d-border-radius);
+}
+
+.chat-message {
+  padding-block: 0.4em;
+}
+
+// Clear of the date pill that floats over the separator.
+.chat-message-separator__line-container + .chat-message-container {
+  margin-top: var(--space-2);
 }
 
 // -----------------------------------------------------------------------
