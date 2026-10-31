@@ -27,7 +27,7 @@ component; install it alongside this one.
 | `nav-scroller.scss` | Scrollable topic nav strip with minimal chevron arrows outside the pills, layered above the posts it scrolls over; keeps the glosario/wiki nav items off category and tag lists |
 | `mermaid.scss` | Mermaid diagrams scale to the post width instead of their intrinsic size |
 | `ai-bot.scss` | Thumbs up/down instead of like/flag inside AI bot conversations, with no reaction picker or counts; frameless AI artifacts fill their full embed height instead of scrolling inside a 1000px frame |
-| `mobile-stuff.scss` | Responsive font sizes, sidebar backgrounds, docs categories on mobile |
+| `mobile-stuff.scss` | Responsive font sizes, sidebar backgrounds, docs categories on mobile, one top row with a single back in full-page chat |
 | `user.scss`, `new-user.scss` | Profile and messages pages, and the order of core's user sidebar panel |
 | `custom-user-menu.scss`, `d-combo-button.scss`, `groups.scss` | User menu, dropdowns, group pages |
 | `ghost-cards.scss` | Ghost bookmark cards inside embedded blog topics |
