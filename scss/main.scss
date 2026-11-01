@@ -918,8 +918,9 @@ nav.c-footer .c-footer__item {
 }
 
 // Chat styling
-.is-expanded .chat-drawer-container {
-  box-shadow: 0 0 0 2px var(--primary-300);
+// Same hairline as the topic cards. The extra specificity beats a violet 2px ring.
+.chat-drawer.is-expanded .chat-drawer-container {
+  box-shadow: 0 0 0 1px var(--primary-low);
 }
 
 .chat-composer .chat-composer-button,
