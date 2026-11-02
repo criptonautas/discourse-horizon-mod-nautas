@@ -1457,11 +1457,6 @@ body.category-preguntas li:has(.tag-drop) {
 // Which blurb a docs row shows — gist, excerpt, or neither in glosario — is decided by
 // the Horizon AI Gists component (its gist_hidden_categories setting).
 
-// Fix different font in category groups
-.custom-category-group .badge-category__wrapper {
-  font-size: var(--font-down-1);
-}
-
 // Hiding topic-list data on Docs Categories.
 // Scoped to the docs list itself, NOT to the category's body class: page-wide, this also
 // stripped the num cells from the related/suggested topic list on topic pages inside

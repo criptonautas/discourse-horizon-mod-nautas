@@ -116,11 +116,6 @@ div[class*="category-title-header"]
   display: none;
 }
 
-// Fix for sticking tags on categories
-.custom-category-group .category-details .subcategories {
-  gap: 0.25rem;
-}
-
 .category-boxes {
   padding-top: 1rem;
 }
@@ -151,28 +146,6 @@ div[class*="category-title-header"]
 .category-boxes .category-box-heading .badge-category__name,
 .category-boxes-with-topics .category-box-heading .badge-category__name {
   font-weight: 700;
-}
-
-// Disable group expand/collapse feature
-.custom-categories-groups a.custom-category-group-toggle {
-  pointer-events: none;
-  cursor: default;
-  text-transform: uppercase;
-}
-
-.custom-categories-groups a.custom-category-group-toggle:not(:first-child) {
-  margin: 2.5rem 0 1.5rem;
-}
-
-.custom-category-group-toggle h2 {
-  font-size: var(--font-up-4);
-  font-weight: 800;
-}
-
-// Hide some elements
-.custom-category-group-toggle .d-icon,
-.custom-category-group-muted {
-  display: none !important;
 }
 
 // Go back link from javascripts/discourse/api-initializers/category-back.js, which
