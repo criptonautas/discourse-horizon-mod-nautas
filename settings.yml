@@ -43,8 +43,3 @@ chart_font_size:
   default: 14
   min: 10
   max: 24
-
-subcategories_as_categories:
-  type: list
-  list_type: category
-  default: ""

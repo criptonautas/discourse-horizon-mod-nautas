@@ -389,36 +389,6 @@ div[class*="category-title-header"]
   }
 }
 
-// The extra links of discourse-category-groups (/videos) have their own markup, so the
-// tile and title are repeated to match the category boxes beside them.
-.navigation-categories
-  .custom-category-group
-  .extra-link.category-box
-  .parent-box-link {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin: 0;
-
-  .d-icon {
-    flex-shrink: 0;
-    box-sizing: border-box;
-    width: 2.75rem;
-    height: 2.75rem;
-    padding: 0.6rem;
-    border-radius: var(--d-border-radius-large);
-    background: var(--primary-very-low);
-    color: var(--primary-high);
-  }
-
-  .title {
-    margin: 0;
-    font-size: var(--font-up-2);
-    font-weight: 700;
-    line-height: 1.15;
-  }
-}
-
 // Category groups, told apart only by a tint behind the grey icon; the tile rule above
 // reads it. 14% keeps the grey icon at 4.6:1 or more in both schemes.
 .category-box-curso,

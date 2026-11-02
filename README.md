@@ -90,8 +90,6 @@ hidden still shows up in the post.
   clone, not a move, so the list Glimmer renders is left alone; the original is hidden in
   `scss/user.scss`, and the copy is rebuilt on each page change so its draft count stays
   current.
-- **`subcategories-as-categories.js`** — on `/categories`, gives the subcategories of the
-  parents chosen in the `subcategories_as_categories` setting boxes of their own.
 - **`category-back.js`** — prepends a "go back" link into `.list-controls
   .navigation-container` on category pages (parent category, or `/categories` from a
   top-level one), so it rides Horizon's sticky bar ahead of the breadcrumbs. The target
