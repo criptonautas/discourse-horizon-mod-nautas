@@ -448,18 +448,3 @@ div[class*="category-title-header"]
     var(--secondary)
   );
 }
-
-// Subcategory pills on /categories: readable at a glance, and easy to tap.
-.navigation-categories .custom-category-group .subcategories {
-  gap: 0.35rem 0.75rem;
-  margin-top: 0.6rem;
-
-  .badge-category__wrapper {
-    font-size: var(--font-0);
-  }
-
-  .badge-category .d-icon {
-    width: 1.1em;
-    height: 1.1em;
-  }
-}
