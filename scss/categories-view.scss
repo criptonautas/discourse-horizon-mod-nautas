@@ -171,6 +171,7 @@ div[class*="category-title-header"]
 
 // Hide some elements
 .custom-categories-groups .category-box-soporte,
+.custom-categories-groups .category-box-preguntas,
 .custom-category-group-toggle .d-icon,
 .custom-category-group-muted {
   display: none !important;
@@ -275,10 +276,7 @@ div[class*="category-title-header"]
     background: none;
   }
 
-  // The description is hidden above, so the icon carries the box: a tile beside the name,
-  // or stacked over it on a phone, where half a row can't fit both. .badge-category holds
-  // the icon and .badge-category__name, so its direction does the whole layout.
-  // 2.75rem is the knob. Selectors repeat .category-box to outrank the title-header icon.
+  // The description is hidden above, so the box is only its heading, centred.
   .category-boxes .category-box .category-box-inner,
   .category-boxes-with-topics .category-box .category-box-inner {
     display: flex;
@@ -296,26 +294,46 @@ div[class*="category-title-header"]
   .category-boxes .category-box .category-box-heading,
   .category-boxes-with-topics .category-box .category-box-heading {
     margin: 0;
+  }
 
+  // Boxes of categories: 4 on wide screens, where icon and name fit side by side; else 2.
+  // A fixed count, NOT core's auto-fit: core's track max is
+  // --category-boxes-max-width (1fr), so auto-fit collapses the empty tracks
+  // and one or two subcategories stretch across the whole row. Fixed columns
+  // keep every box a quarter (or half) wide whatever the count, and
+  // minmax(0, 1fr) lets a long name shrink its box instead of overflowing.
+  // sm is 640px = 40rem: media-query rem ignores the theme's 22-23px root.
+  .category-boxes,
+  .category-boxes-with-topics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    @include viewport.from(xl) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+}
+
+// Category boxes, on /categories and above a category's topics: the icon in a tile beside
+// the name. .badge-category holds both, so its direction does the layout; pills use
+// the same class outside .category-box-heading, so they keep their small icon.
+// 2.75rem is the knob. .category-box outranks the title-header icon rule.
+.navigation-category,
+.navigation-categories {
+  .category-boxes .category-box .category-box-heading,
+  .category-boxes-with-topics .category-box .category-box-heading {
     h3 {
       margin: 0;
     }
 
     .badge-category__wrapper {
+      justify-content: flex-start;
       white-space: normal;
     }
 
     .badge-category {
+      flex-flow: row nowrap;
       align-items: center;
       gap: 0.75rem;
-
-      @include viewport.from(sm) {
-        flex-flow: row nowrap;
-      }
-
-      @include viewport.until(sm) {
-        flex-direction: column;
-      }
     }
 
     .badge-category .d-icon {
@@ -335,41 +353,40 @@ div[class*="category-title-header"]
       line-height: 1.15;
       white-space: normal;
     }
-
-    @include viewport.from(sm) {
-      text-align: left;
-
-      .badge-category__wrapper {
-        justify-content: flex-start;
-      }
-    }
-
-    @include viewport.until(sm) {
-      text-align: center;
-
-      .badge-category__wrapper {
-        justify-content: center;
-      }
-    }
   }
 
-  .discourse-no-touch & .category-box:hover .d-icon {
+  .discourse-no-touch & .category-box:hover .category-box-heading .d-icon {
     color: var(--tertiary);
   }
+}
 
-  // Boxes of categories: 4 on wide screens, where icon and name fit side by side; else 2.
-  // A fixed count, NOT core's auto-fit: core's track max is
-  // --category-boxes-max-width (1fr), so auto-fit collapses the empty tracks
-  // and one or two subcategories stretch across the whole row. Fixed columns
-  // keep every box a quarter (or half) wide whatever the count, and
-  // minmax(0, 1fr) lets a long name shrink its box instead of overflowing.
-  // sm is 640px = 40rem: media-query rem ignores the theme's 22-23px root.
-  .category-boxes,
-  .category-boxes-with-topics {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+// /categories only: a hairline, in the card border's colour, between name and description.
+.navigation-categories .category-boxes .category-box .category-box-heading {
+  margin-bottom: 0.6rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--primary-low);
+  text-align: left;
+}
 
-    @include viewport.from(xl) {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+.navigation-categories .category-boxes .category-box .category-details {
+  height: auto; // main.scss's fixed height is for boxes with no description
+}
+
+// Subcategory boxes on a phone: half a row can't fit icon and name side by side.
+@include viewport.until(sm) {
+  .navigation-category .category-boxes .category-box .category-box-heading,
+  .navigation-category
+    .category-boxes-with-topics
+    .category-box
+    .category-box-heading {
+    text-align: center;
+
+    .badge-category {
+      flex-direction: column;
+    }
+
+    .badge-category__wrapper {
+      justify-content: center;
     }
   }
 }
