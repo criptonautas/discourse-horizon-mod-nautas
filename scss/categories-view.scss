@@ -275,14 +275,39 @@ div[class*="category-title-header"]
     background: none;
   }
 
-  // The description is hidden above, so the icon carries the box: large and beside the
-  // name, or stacked over it on a phone, where half a row can't fit both. .badge-category
-  // holds the icon and .badge-category__name, so its direction does the whole layout.
-  // 2.5em is the knob — it scales with the box font-size.
-  .category-boxes .category-box-heading,
-  .category-boxes-with-topics .category-box-heading {
+  // The description is hidden above, so the icon carries the box: a tile beside the name,
+  // or stacked over it on a phone, where half a row can't fit both. .badge-category holds
+  // the icon and .badge-category__name, so its direction does the whole layout.
+  // 2.75rem is the knob. Selectors repeat .category-box to outrank the title-header icon.
+  .category-boxes .category-box .category-box-inner,
+  .category-boxes-with-topics .category-box .category-box-inner {
+    display: flex;
+    align-items: center;
+    min-height: 5.5rem;
+    box-sizing: border-box;
+    padding: 0.75rem;
+  }
+
+  .category-boxes .category-box .category-details,
+  .category-boxes-with-topics .category-box .category-details {
+    width: 100%;
+  }
+
+  .category-boxes .category-box .category-box-heading,
+  .category-boxes-with-topics .category-box .category-box-heading {
+    margin: 0;
+
+    h3 {
+      margin: 0;
+    }
+
+    .badge-category__wrapper {
+      white-space: normal;
+    }
+
     .badge-category {
-      gap: 0.6rem;
+      align-items: center;
+      gap: 0.75rem;
 
       @include viewport.from(sm) {
         flex-flow: row nowrap;
@@ -290,20 +315,25 @@ div[class*="category-title-header"]
 
       @include viewport.until(sm) {
         flex-direction: column;
-        align-items: center;
       }
     }
 
     .badge-category .d-icon {
       flex-shrink: 0;
-      height: 2.5em;
-      width: 2.5em;
+      box-sizing: border-box;
+      width: 2.75rem;
+      height: 2.75rem;
+      padding: 0.6rem;
+      border-radius: var(--d-border-radius-large);
+      background: var(--primary-very-low);
+      color: var(--primary-high);
     }
 
     .badge-category__name {
       min-width: 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      font-size: var(--font-up-1);
+      line-height: 1.15;
+      white-space: normal;
     }
 
     @include viewport.from(sm) {
@@ -321,6 +351,10 @@ div[class*="category-title-header"]
         justify-content: center;
       }
     }
+  }
+
+  .discourse-no-touch & .category-box:hover .d-icon {
+    color: var(--tertiary);
   }
 
   // Boxes of categories: 4 on wide screens, where icon and name fit side by side; else 2.
