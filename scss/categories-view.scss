@@ -170,8 +170,6 @@ div[class*="category-title-header"]
 }
 
 // Hide some elements
-.custom-categories-groups .category-box-soporte,
-.custom-categories-groups .category-box-preguntas,
 .custom-category-group-toggle .d-icon,
 .custom-category-group-muted {
   display: none !important;
@@ -343,7 +341,7 @@ div[class*="category-title-header"]
       height: 2.75rem;
       padding: 0.6rem;
       border-radius: var(--d-border-radius-large);
-      background: var(--primary-very-low);
+      background: var(--category-tile-bg, var(--primary-very-low));
       color: var(--primary-high);
     }
 
@@ -389,4 +387,64 @@ div[class*="category-title-header"]
       justify-content: center;
     }
   }
+}
+
+// The extra links of discourse-category-groups (/videos) have their own markup, so the
+// tile and title are repeated to match the category boxes beside them.
+.navigation-categories
+  .custom-category-group
+  .extra-link.category-box
+  .parent-box-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0;
+
+  .d-icon {
+    flex-shrink: 0;
+    box-sizing: border-box;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0.6rem;
+    border-radius: var(--d-border-radius-large);
+    background: var(--primary-very-low);
+    color: var(--primary-high);
+  }
+
+  .title {
+    margin: 0;
+    font-size: var(--font-up-2);
+    font-weight: 700;
+    line-height: 1.15;
+  }
+}
+
+// Category groups, told apart only by a tint behind the grey icon; the tile rule above
+// reads it. 14% keeps the grey icon at 4.6:1 or more in both schemes.
+.category-box-curso,
+.category-box-lideres {
+  --category-tile-bg: color-mix(in srgb, var(--tertiary) 14%, var(--secondary));
+}
+
+.category-box-wiki,
+.category-box-glosario {
+  // Literal: this theme points --success at a grey.
+  --category-tile-bg: color-mix(
+    in srgb,
+    light-dark(#1f7a5c, #6dc08f) 14%,
+    var(--secondary)
+  );
+}
+
+.category-box-comunidad,
+.category-box-filonauta {
+  --category-tile-bg: color-mix(in srgb, var(--love) 14%, var(--secondary));
+}
+
+.category-box-cripto {
+  --category-tile-bg: color-mix(
+    in srgb,
+    var(--quaternary) 14%,
+    var(--secondary)
+  );
 }
