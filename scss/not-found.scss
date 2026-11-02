@@ -72,3 +72,9 @@
     color: var(--primary);
   }
 }
+
+// Horizon caps the server-rendered page's outlet at the screen's height, so the box's ground
+// stops halfway, before the topic cards. Specific enough to win whatever order the sheets load.
+html body.no-ember #main-outlet {
+  max-height: 100%;
+}
