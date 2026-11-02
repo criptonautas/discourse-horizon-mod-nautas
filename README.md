@@ -34,6 +34,7 @@ component; install it alongside this one.
 | `form-templates.scss` | Checklist headings and a dropdown-swapped checklist in form templates |
 | `avatars.scss` | Hairline ring (1px `--primary-low`) with a little air around the picture on every avatar |
 | `compatibility.scss` | Overrides that must land after everything else |
+| `not-found.scss` | The page-not-found illustration: the blog's 404, a pixel 4 either side of anonist's mask, following the colour scheme |
 
 Breakpoints use core's viewport library (`@include viewport.from/until(sm|md|lg)`),
 imported once in `common/common.scss`. Raw `@media` is kept only for off-grid widths
