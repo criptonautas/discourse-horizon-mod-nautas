@@ -34,6 +34,7 @@ instálalo junto a este.
 | `form-templates.scss` | Títulos de checklist y checklist conmutado por desplegable en plantillas de formulario |
 | `avatars.scss` | Anillo fino (1px `--primary-low`) con algo de aire alrededor de la imagen en todos los avatares |
 | `compatibility.scss` | Sobrescrituras que deben aplicarse después de todo lo demás |
+| `not-found.scss` | La ilustración de la página no encontrada: el 404 del blog, un 4 pixelado a cada lado de la máscara de anonist, según el esquema de color |
 
 Los puntos de corte usan la librería de viewport del núcleo (`@include viewport.from/until(sm|md|lg)`),
 importada una vez en `common/common.scss`. El `@media` directo solo se mantiene para anchos fuera de la cuadrícula
