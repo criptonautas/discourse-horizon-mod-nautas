@@ -35,4 +35,13 @@ export default apiInitializer((api) => {
       return value;
     }
   );
+
+  // Their boxes already list them here; the parent's own page keeps its boxes.
+  api.registerValueTransformer(
+    "category-list-subcategories",
+    ({ value, context }) =>
+      context.page === "categories" && parentIds.includes(context.category?.id)
+        ? []
+        : value
+  );
 });
