@@ -275,31 +275,55 @@ div[class*="category-title-header"]
     background: none;
   }
 
-  // The description is hidden above, so the icon carries the box: stacked
-  // over the name and centered. .badge-category holds both the icon and
-  // .badge-category__name, so one flex-direction does the whole layout.
-  // 2.25em is the knob — it scales with the box font-size.
+  // The description is hidden above, so the icon carries the box: large and beside the
+  // name, or stacked over it on a phone, where half a row can't fit both. .badge-category
+  // holds the icon and .badge-category__name, so its direction does the whole layout.
+  // 2.5em is the knob — it scales with the box font-size.
   .category-boxes .category-box-heading,
   .category-boxes-with-topics .category-box-heading {
-    text-align: center;
-
-    .badge-category__wrapper {
-      justify-content: center;
-    }
-
     .badge-category {
-      flex-direction: column;
-      align-items: center;
-      gap: 0.35rem;
+      gap: 0.6rem;
+
+      @include viewport.from(sm) {
+        flex-flow: row nowrap;
+      }
+
+      @include viewport.until(sm) {
+        flex-direction: column;
+        align-items: center;
+      }
     }
 
     .badge-category .d-icon {
-      height: 2.25em;
-      width: 2.25em;
+      flex-shrink: 0;
+      height: 2.5em;
+      width: 2.5em;
+    }
+
+    .badge-category__name {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    @include viewport.from(sm) {
+      text-align: left;
+
+      .badge-category__wrapper {
+        justify-content: flex-start;
+      }
+    }
+
+    @include viewport.until(sm) {
+      text-align: center;
+
+      .badge-category__wrapper {
+        justify-content: center;
+      }
     }
   }
 
-  // Boxes of categories: 4 on desktop, 2 on mobile.
+  // Boxes of categories: 4 on wide screens, where icon and name fit side by side; else 2.
   // A fixed count, NOT core's auto-fit: core's track max is
   // --category-boxes-max-width (1fr), so auto-fit collapses the empty tracks
   // and one or two subcategories stretch across the whole row. Fixed columns
@@ -308,12 +332,10 @@ div[class*="category-title-header"]
   // sm is 640px = 40rem: media-query rem ignores the theme's 22-23px root.
   .category-boxes,
   .category-boxes-with-topics {
-    @include viewport.from(sm) {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 
-    @include viewport.until(sm) {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+    @include viewport.from(xl) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
   }
 }
