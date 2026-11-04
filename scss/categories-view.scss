@@ -112,7 +112,8 @@ div[class*="category-title-header"]
 }
 
 // Subcategory links in the banner (connectors/category-banners-after-description), in
-// place of core's subcategory boxes. Phones: pills under the description.
+// place of core's subcategory boxes, under the description: pills on phones, a row of
+// columns split by hairlines on wider screens.
 .navigation-category:has(.subcategory-links) {
   .category-boxes,
   .category-boxes-with-topics {
@@ -134,13 +135,12 @@ div[class*="category-title-header"]
   .subcategory-links
   a.subcategory-links__item {
   display: inline-flex;
-  flex-direction: column;
-  padding: 0.4rem 0.85rem;
+  align-items: center;
+  padding: 0.25rem 0.85rem 0.25rem 0.25rem; // the icon tile sits close to the pill's edge
   border: 1px solid var(--primary-200);
   border-radius: 999px;
   background: var(--secondary);
   color: var(--primary);
-  font-size: var(--font-down-1);
   text-decoration: none;
 
   // Horizon's hover, as in the sidebar: a tint, the text keeps its colour.
@@ -153,12 +153,18 @@ div[class*="category-title-header"]
   // The banner centres its title's badge; these sit at the start of their row.
   .badge-category {
     justify-content: flex-start;
-    gap: 0.45rem;
+    gap: 0.6rem;
   }
 
+  // The icon in a tile tinted as its parent (category groups, below), so these read as
+  // subcategories and share their parent's colour.
   .badge-category__wrapper .badge-category .d-icon {
-    width: 1.1em;
-    height: 1.1em;
+    box-sizing: border-box;
+    width: 1.6rem; // larger and the three pills of a phone stop sharing a row
+    height: 1.6rem;
+    padding: 0.35rem;
+    border-radius: 50%;
+    background: var(--category-tile-bg, var(--primary-very-low));
     color: var(--primary-high);
   }
 
@@ -168,58 +174,38 @@ div[class*="category-title-header"]
   }
 }
 
-.subcategory-links__description {
-  display: none;
-}
-
-// Wider: the links as a list in a third column of the banner's grid (above), beside
-// title and description. display: contents lifts the list out of the description so
-// it can take its own area.
 @include viewport.from(sm) {
+  // The row takes the banner's full width, not its 650px text column.
   div[class*="category-title-header"]
     .category-title-contents:has(.subcategory-links) {
     flex: 1;
     max-width: none;
-    grid-template-areas:
-      "logo title       links"
-      "logo description links";
-    grid-template-columns: auto minmax(0, 1fr) minmax(0, 1fr);
-    column-gap: 2rem;
-
-    .category-title-description,
-    .category-title-description > .cooked {
-      display: contents;
-    }
-
-    // shortcut: assumes a one-block description (the banner's usual); several
-    // blocks would overlap in the area, wrap them if that ever happens.
-    .cooked > :not(.subcategory-links) {
-      grid-area: description;
-    }
   }
 
   .subcategory-links {
-    grid-area: links;
-    flex-flow: column nowrap;
-    justify-content: center;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
     gap: 0;
-    margin: 0;
-    padding-left: 1.25rem;
-    border-left: 1px solid var(--primary-low);
+    margin-top: 1.5rem;
   }
 
   div[class*="category-title-header"]
     .subcategory-links
     a.subcategory-links__item {
-    gap: 0.2rem;
-    padding: 0.6rem 0.5rem;
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 0.4rem 1.25rem;
     border: 0;
-    border-radius: var(--d-border-radius);
+    border-radius: 0;
     background: none;
-    font-size: inherit;
 
     + .subcategory-links__item {
-      border-top: 1px solid var(--primary-low);
+      border-left: 1px solid var(--primary-low);
+    }
+
+    &:hover,
+    &:focus-visible {
+      background: var(--d-hover);
     }
 
     .badge-category {
@@ -227,30 +213,15 @@ div[class*="category-title-header"]
     }
 
     .badge-category__wrapper .badge-category .d-icon {
-      box-sizing: border-box;
       width: 2.25rem;
       height: 2.25rem;
       padding: 0.5rem;
       border-radius: var(--d-border-radius-large);
-
-      // The parent's tint (category groups, below), so its subcategories share it.
-      background: var(--category-tile-bg, var(--d-content-background));
     }
 
     .badge-category__name {
       font-weight: 700;
     }
-  }
-
-  .subcategory-links__description {
-    // Under the name: the icon tile's width plus the badge's gap.
-    display: -webkit-box;
-    padding-left: 3rem;
-    overflow: hidden;
-    color: var(--primary-medium);
-    font-size: var(--font-down-1);
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
   }
 }
 

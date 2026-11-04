@@ -3,9 +3,8 @@ import { trustHTML } from "@ember/template";
 import categoryListSubcategories from "discourse/helpers/category-list-subcategories";
 import { categoryBadgeHTML } from "discourse/ui-kit/helpers/d-category-link";
 
-// The subcategories inside the category banner (discourse-category-banners): a list
-// beside the description on wide screens, pills under it on phones
-// (scss/categories-view.scss). Replaces core's subcategory boxes, whose fixed grid
+// The subcategories inside the category banner (discourse-category-banners), under the
+// description: a row on wide screens, pills on phones (scss/categories-view.scss). Replaces core's subcategory boxes, whose fixed grid
 // left gaps with fewer than four. Same subcategories as those boxes (page "category").
 export default class SubcategoryLinks extends Component {
   get subcategories() {
@@ -26,11 +25,6 @@ export default class SubcategoryLinks extends Component {
         {{#each this.subcategories as |category|}}
           <a class="subcategory-links__item" href={{category.url}}>
             {{this.badge category}}
-            {{#unless category.isMuted}}
-              <span class="subcategory-links__description">
-                {{category.description_text}}
-              </span>
-            {{/unless}}
           </a>
         {{/each}}
       </nav>

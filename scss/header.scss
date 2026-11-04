@@ -59,6 +59,13 @@ html:not(.anon)
   margin-right: 0.5em;
 }
 
+// Accounts come from Authentik, where log in and sign up are the same flow: one button
+// is enough, and it leaves room for the mascot. Keep "allow new registrations" on, or
+// Authentik's first log in can't create the account.
+.d-header .sign-up-button {
+  display: none;
+}
+
 // Forces the login button hover to a brand-tertiary shade instead of core's default color.
 .login-button:hover {
   background-color: light-dark(
