@@ -30,8 +30,9 @@ body.f-nav-hidden:not(.has-full-page-chat) .f-nav {
 // 1px solid var(--primary-low): the line Discourse uses for content borders
 // (--content-border-color) and f-nav's own stylesheet uses on its top edge.
 
+// Not on lists: their sticky bar draws its own line right below, which made two.
 @include viewport.until(sm) {
-  .d-header {
+  body:not(:has(.list-controls)) .d-header {
     border-bottom: 1px solid var(--primary-low);
   }
 }
