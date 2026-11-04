@@ -233,22 +233,34 @@ body.f-nav-hidden:not(.archetype-regular,
   }
 }
 
-$chat-back-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 16'%3E%3Cpath d='M8 2 2 8l6 6' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-
-// Full-page chat on a phone: one top row. The chat's navbar moves into the forum header's
-// row, which keeps its background as the "you are here", and profile icons leave so they
-// don't mix with the chat's. Class renames in the plugin fall back to two rows.
+// Full-page chat on a phone: one top row, like a dedicated sidebar (profile, admin). The
+// sidebar button opens the chat's own panel, so the chat needs no "back" of its own: the
+// chat button returns to the forum. The navbar sits in the header row, after the button.
+// The plugin hides the hamburger on full-page chat and swaps the logo for its own header.
 .mobile-view .has-full-page-chat {
-  .btn-sidebar-toggle,
-  .d-header-icons {
+  .c-header,
+  .c-navbar__back-button,
+  .d-header-icons > li:not(.hamburger-dropdown) {
     display: none;
+  }
+
+  .d-header-icons {
+    position: absolute;
+    top: 0;
+    left: 0.5rem;
+    height: var(--header-offset);
+    align-items: center;
+
+    .hamburger-dropdown {
+      display: list-item;
+    }
   }
 
   .c-routes .c-navbar-container {
     position: fixed;
     top: 0;
     right: 0;
-    left: 8.5rem; // clear of the list's back, up to "Back to Forum" at 375px
+    left: 3.25rem; // clear of the sidebar button
     z-index: 1001; // over the header (1000)
     height: var(--header-offset);
     align-items: center;
@@ -256,44 +268,9 @@ $chat-back-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000
     background: transparent;
   }
 
-  // Inside a chat the navbar's own back is the only one, so it takes the whole row.
-  &:has(.c-navbar__back-button) {
-    .c-header {
-      display: none;
-    }
-
-    .c-routes .c-navbar-container {
-      left: 0;
-    }
-  }
-
-  // The two backs read as one control: same chevron (a mask, as neither icon can be
-  // swapped from here), text and metrics. title is the plugin's translated "back".
-  .c-navbar__back-button,
-  .c-header .back-to-forum {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-1);
-    padding: var(--space-2) var(--space-1);
-    color: var(--primary);
-    font-size: var(--font-0);
-  }
-
-  .c-navbar__back-button > .d-icon,
-  .c-header .back-to-forum > .d-icon {
-    width: 0.75em;
-    height: 0.75em;
-    background-color: currentcolor;
-    color: var(--primary);
-    mask: $chat-back-chevron center / contain no-repeat;
-
-    use {
-      display: none;
-    }
-  }
-
-  .c-navbar__back-button::after {
-    content: attr(title);
+  // The open sidebar shares the header's layer; the navbar would print over it.
+  &:has(.hamburger-panel) .c-routes .c-navbar-container {
+    visibility: hidden;
   }
 }
 

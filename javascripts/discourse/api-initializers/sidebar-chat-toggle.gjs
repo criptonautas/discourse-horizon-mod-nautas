@@ -12,6 +12,7 @@ import ChatHeaderIconUnreadIndicator from "discourse/plugins/chat/discourse/comp
 class SidebarChatToggle extends Component {
   @service chat;
   @service chatStateManager;
+  @service currentUser;
   @service header;
   @service router;
 
@@ -54,15 +55,19 @@ class SidebarChatToggle extends Component {
       @label="chat.title_capitalized"
       @title={{if this.isActive "chat.close" "chat.title_capitalized"}}
     >
-      {{! counts and the user's indicator preference are read by the component itself }}
-      <ChatHeaderIconUnreadIndicator />
+      {{! counts and the user's indicator preference are read by the component itself;
+      it reads currentUser.user_option, so anonymous visitors don't get it }}
+      {{#if this.currentUser}}
+        <ChatHeaderIconUnreadIndicator />
+      {{/if}}
     </DButton>
   </template>
 }
 
 export default apiInitializer((api) => {
-  // lookup returns undefined when the chat plugin is off
-  if (!api.container.lookup("service:chat")?.userCanChat) {
+  // lookup returns undefined when the chat plugin is off. Not userCanChat: anonymous
+  // visitors read public channels too, and this button is their way back to the forum.
+  if (!api.container.lookup("service:chat")) {
     return;
   }
 
