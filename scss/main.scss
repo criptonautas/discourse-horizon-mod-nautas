@@ -1415,6 +1415,7 @@ body.category-preguntas li:has(.tag-drop) {
 
   --category-banner-background: transparent !important;
   --category-banner-color: unset !important;
+  box-sizing: border-box; // width: 100% plus the border overflowed phones by 2px
   border: 1px solid var(--primary-200);
   border-radius: var(--d-border-radius-large);
 }
