@@ -236,38 +236,30 @@ div[class*="category-title-header"]
 // on category routes (/categories is .navigation-categories), so the
 // all-categories page keeps its own layout.
 .navigation-category {
-  // Outranks the "Recover category descriptions" !important above.
-  .category-boxes .category .description,
-  .category-boxes-with-topics .category .description {
-    display: none !important;
-  }
-
   .category-boxes .category-box,
   .category-boxes-with-topics .category-box {
     background: none;
   }
 
-  // The description is hidden above, so the box is only its heading, centred.
+  // Heading and description, left-aligned as the category groups on /categories.
   .category-boxes .category-box .category-box-inner,
   .category-boxes-with-topics .category-box .category-box-inner {
-    display: flex;
-    align-items: center;
-    min-height: 5.5rem;
     box-sizing: border-box;
     padding: 0.75rem;
   }
 
-  .category-boxes .category-box .category-details,
-  .category-boxes-with-topics .category-box .category-details {
-    width: 100%;
+  .category-boxes .category-box .description,
+  .category-boxes-with-topics .category-box .description {
+    text-align: left;
+    font-weight: normal;
+
+    p {
+      margin: 0;
+    }
   }
 
-  .category-boxes .category-box .category-box-heading,
-  .category-boxes-with-topics .category-box .category-box-heading {
-    margin: 0;
-  }
-
-  // Boxes of categories: 4 on wide screens, where icon and name fit side by side; else 2.
+  // Boxes of categories: 4 on wide screens, 2 on tablets, 1 on phones, where half a row
+  // can't fit icon, name and description.
   // A fixed count, NOT core's auto-fit: core's track max is
   // --category-boxes-max-width (1fr), so auto-fit collapses the empty tracks
   // and one or two subcategories stretch across the whole row. Fixed columns
@@ -276,7 +268,11 @@ div[class*="category-title-header"]
   // sm is 640px = 40rem: media-query rem ignores the theme's 22-23px root.
   .category-boxes,
   .category-boxes-with-topics {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1fr);
+
+    @include viewport.from(sm) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 
     @include viewport.from(xl) {
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -331,7 +327,8 @@ div[class*="category-title-header"]
   }
 }
 
-// /categories only: a hairline, in the card border's colour, between name and description.
+// A hairline, in the card border's colour, between name and description.
+.navigation-category .category-boxes .category-box .category-box-heading,
 .navigation-categories .category-boxes .category-box .category-box-heading {
   margin-bottom: 0.6rem;
   padding-bottom: 0.6rem;
@@ -339,27 +336,9 @@ div[class*="category-title-header"]
   text-align: left;
 }
 
+.navigation-category .category-boxes .category-box .category-details,
 .navigation-categories .category-boxes .category-box .category-details {
   height: auto; // main.scss's fixed height is for boxes with no description
-}
-
-// Subcategory boxes on a phone: half a row can't fit icon and name side by side.
-@include viewport.until(sm) {
-  .navigation-category .category-boxes .category-box .category-box-heading,
-  .navigation-category
-    .category-boxes-with-topics
-    .category-box
-    .category-box-heading {
-    text-align: center;
-
-    .badge-category {
-      flex-direction: column;
-    }
-
-    .badge-category__wrapper {
-      justify-content: center;
-    }
-  }
 }
 
 // Category groups, told apart only by a tint behind the grey icon; the tile rule above
