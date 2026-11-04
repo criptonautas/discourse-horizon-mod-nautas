@@ -111,6 +111,149 @@ div[class*="category-title-header"]
   padding-left: 0.5rem;
 }
 
+// Subcategory links in the banner (connectors/category-banners-after-description), in
+// place of core's subcategory boxes. Phones: pills under the description.
+.navigation-category:has(.subcategory-links) {
+  .category-boxes,
+  .category-boxes-with-topics {
+    display: none;
+  }
+}
+
+.subcategory-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+}
+
+// Outranks the banner's own rules: its badge icon size (below) and the underline it
+// gives links in the description, where the connector renders.
+div[class*="category-title-header"]
+  .subcategory-links
+  a.subcategory-links__item {
+  display: inline-flex;
+  flex-direction: column;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid var(--primary-200);
+  border-radius: 999px;
+  background: var(--secondary);
+  color: var(--primary);
+  font-size: var(--font-down-1);
+  text-decoration: none;
+
+  // Horizon's hover, as in the sidebar: a tint, the text keeps its colour.
+  &:hover,
+  &:focus-visible {
+    background: var(--d-hover);
+    color: var(--primary);
+  }
+
+  // The banner centres its title's badge; these sit at the start of their row.
+  .badge-category {
+    justify-content: flex-start;
+    gap: 0.45rem;
+  }
+
+  .badge-category__wrapper .badge-category .d-icon {
+    width: 1.1em;
+    height: 1.1em;
+    color: var(--primary-high);
+  }
+
+  .badge-category__name {
+    color: var(--primary);
+    font-weight: 600;
+  }
+}
+
+.subcategory-links__description {
+  display: none;
+}
+
+// Wider: the links as a list in a third column of the banner's grid (above), beside
+// title and description. display: contents lifts the list out of the description so
+// it can take its own area.
+@include viewport.from(sm) {
+  div[class*="category-title-header"]
+    .category-title-contents:has(.subcategory-links) {
+    flex: 1;
+    max-width: none;
+    grid-template-areas:
+      "logo title       links"
+      "logo description links";
+    grid-template-columns: auto minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: 2rem;
+
+    .category-title-description,
+    .category-title-description > .cooked {
+      display: contents;
+    }
+
+    // shortcut: assumes a one-block description (the banner's usual); several
+    // blocks would overlap in the area, wrap them if that ever happens.
+    .cooked > :not(.subcategory-links) {
+      grid-area: description;
+    }
+  }
+
+  .subcategory-links {
+    grid-area: links;
+    flex-flow: column nowrap;
+    justify-content: center;
+    gap: 0;
+    margin: 0;
+    padding-left: 1.25rem;
+    border-left: 1px solid var(--primary-low);
+  }
+
+  div[class*="category-title-header"]
+    .subcategory-links
+    a.subcategory-links__item {
+    gap: 0.2rem;
+    padding: 0.6rem 0.5rem;
+    border: 0;
+    border-radius: var(--d-border-radius);
+    background: none;
+    font-size: inherit;
+
+    + .subcategory-links__item {
+      border-top: 1px solid var(--primary-low);
+    }
+
+    .badge-category {
+      gap: 0.75rem;
+    }
+
+    .badge-category__wrapper .badge-category .d-icon {
+      box-sizing: border-box;
+      width: 2.25rem;
+      height: 2.25rem;
+      padding: 0.5rem;
+      border-radius: var(--d-border-radius-large);
+
+      // The parent's tint (category groups, below), so its subcategories share it.
+      background: var(--category-tile-bg, var(--d-content-background));
+    }
+
+    .badge-category__name {
+      font-weight: 700;
+    }
+  }
+
+  .subcategory-links__description {
+    // Under the name: the icon tile's width plus the badge's gap.
+    display: -webkit-box;
+    padding-left: 3rem;
+    overflow: hidden;
+    color: var(--primary-medium);
+    font-size: var(--font-down-1);
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+}
+
 // Hide redundant tags on category header
 .category-title-header .tag-banner-container {
   display: none;
@@ -363,7 +506,8 @@ div[class*="category-title-header"]
 // Category groups, told apart only by a tint behind the grey icon; the tile rule above
 // reads it. 14% keeps the grey icon at 4.6:1 or more in both schemes.
 .category-box-curso,
-.category-box-lideres {
+.category-box-lideres,
+.category-banner-curso {
   --category-tile-bg: color-mix(in srgb, var(--tertiary) 14%, var(--secondary));
 }
 
@@ -378,11 +522,14 @@ div[class*="category-title-header"]
 }
 
 .category-box-comunidad,
-.category-box-filonauta {
+.category-box-filonauta,
+.category-banner-comunidad,
+.category-banner-filonauta {
   --category-tile-bg: color-mix(in srgb, var(--love) 14%, var(--secondary));
 }
 
-.category-box-cripto {
+.category-box-cripto,
+.category-banner-cripto {
   --category-tile-bg: color-mix(
     in srgb,
     var(--quaternary) 14%,
