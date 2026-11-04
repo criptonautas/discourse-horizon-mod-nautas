@@ -5,14 +5,14 @@
   padding-bottom: 2rem;
 }
 
-// Group boxes styling
-.group-boxes .group-box {
-  background-color: var(--primary-25);
-  box-shadow: 0 0 6px 1px var(--topic-card-shadow);
+// Group boxes: core already draws the 1px card border; the hover shadow of the
+// category boxes (categories-view.scss).
+.groups-boxes .group-box {
+  transition: box-shadow 0.15s ease;
 }
 
-.group-boxes .group-box:hover {
-  background-color: var(--primary-50);
+.discourse-no-touch .groups-boxes .group-box:hover {
+  box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
 }
 
 // We use a team group so hide redundancy

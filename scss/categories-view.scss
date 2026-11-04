@@ -225,6 +225,25 @@ div[class*="category-title-header"]
   }
 }
 
+// Cards as on /custom (discourse-custom-home-nautas): a 1px border, no shadow at rest,
+// a soft one on hover. Replaces Horizon's violet halo (--topic-card-shadow). #main-outlet:
+// Horizon's stylesheet loads after every component's, so equal selectors lose to it.
+#main-outlet .category-boxes .category-box-inner,
+#main-outlet .category-boxes-with-topics .category-box-inner {
+  border: 1px solid var(--primary-200);
+  box-shadow: none;
+  transition: box-shadow 0.15s ease;
+
+  // Keyboard selection keeps Horizon's accent ring, without the halo.
+  &.selected {
+    box-shadow: 0 0 0 2px var(--accent-color);
+  }
+}
+
+.discourse-no-touch #main-outlet .category-box:hover > .category-box-inner {
+  box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
+}
+
 // Recover category descriptions on Horizon
 .category-boxes .category .description,
 .category-boxes-with-topics .category .description {

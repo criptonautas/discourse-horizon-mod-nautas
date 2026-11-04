@@ -590,8 +590,8 @@ button [title="similares"] .d-button-label {
 @container style(--scheme-type: dark) {
   @include viewport.from(sm) {
     .topic-list-item.--high-context {
-      border: 1px solid var(--primary-300);
-      box-shadow: 0 0 6px 1px var(--topic-card-shadow);
+      border: 1px solid var(--primary-200);
+      box-shadow: none;
     }
   }
 }
