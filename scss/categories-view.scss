@@ -137,9 +137,11 @@ div[class*="category-title-header"]
   display: inline-flex;
   align-items: center;
   padding: 0.25rem 0.85rem 0.25rem 0.25rem; // the icon tile sits close to the pill's edge
-  border: 1px solid var(--primary-200);
+  // The cards' fill and Horizon's card border: --secondary and --primary-200 all but
+  // vanished on the light banner.
+  border: 1px solid var(--primary-300);
   border-radius: 999px;
-  background: var(--secondary);
+  background: var(--d-content-background);
   color: var(--primary);
   text-decoration: none;
 
