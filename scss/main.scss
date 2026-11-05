@@ -466,6 +466,17 @@ body.category .navigation-controls,
   padding-top: 0.25rem;
 }
 
+// Chat search first in the chat sidebar, above threads and the channel lists. The
+// sections are a flex column on desktop; the phone's dropdown gets one here too.
+.sidebar-sections:has(> [data-section-name="chat-search"]) {
+  display: flex;
+  flex-direction: column;
+
+  > [data-section-name="chat-search"] {
+    order: -1;
+  }
+}
+
 // [EXPERIMENTAL] Padding to chat header (pairing with custom top nav padding)
 @media (width >=40rem) {
   .full-page-chat .c-navbar-container {
