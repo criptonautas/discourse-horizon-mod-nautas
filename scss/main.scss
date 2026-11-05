@@ -403,7 +403,14 @@ body.category .navigation-controls,
   top: 0;
   z-index: 1;
   flex-shrink: 0;
+  padding-top: 0.5rem;
   background: var(--d-sidebar-background);
+}
+
+// A sticky row stops below its scroller's top padding, which showed as a gap above
+// "Back" on scroll: the row above carries that 0.5rem (another component's value).
+.sidebar-wrapper .sidebar-sections:has(> .sidebar-panel-header__row) {
+  padding-top: 0;
 }
 
 // Chat is toggled from the sidebar footer instead (api-initializers/sidebar-chat-toggle.gjs)
@@ -505,9 +512,10 @@ body:has(.discourse-docs-sidebar-panel)
   display: none !important;
 }
 
-// f-nav + modals edits
-.f-nav {
-  height: 2.8rem !important;
+// f-nav's height, through the variable it reads for its own height and for the room it
+// leaves (page padding, lifted widgets, and below the chat). html:root outranks its :root.
+html:root {
+  --f-nav-height: 2.8rem;
 }
 
 .d-modal__header {
