@@ -234,8 +234,8 @@ body.f-nav-hidden:not(.archetype-regular,
 }
 
 // Full-page chat on a phone: one top row, like a dedicated sidebar (profile, admin). The
-// sidebar button opens the chat's own panel, so the chat needs no "back" of its own: the
-// chat button returns to the forum. The navbar sits in the header row, after the button.
+// sidebar button opens the chat's own panel, whose "back" returns to the forum
+// (chat-sidebar-back.gjs). The navbar sits in the header row, after the button.
 // The plugin hides the hamburger on full-page chat and swaps the logo for its own header.
 .mobile-view .has-full-page-chat {
   .c-header,

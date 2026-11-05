@@ -46,27 +46,31 @@ class SidebarChatToggle extends Component {
     }
   }
 
+  // Inside the full-page chat, "back" at the top of its sidebar leads out
+  // (chat-sidebar-back.gjs), as on every other panel.
   <template>
-    <DButton
-      class="btn-default sidebar-chat-toggle
-        {{if this.isActive 'sidebar-chat-toggle--active'}}"
-      @action={{this.toggleChat}}
-      @icon="d-chat"
-      @label="chat.title_capitalized"
-      @title={{if this.isActive "chat.close" "chat.title_capitalized"}}
-    >
-      {{! counts and the user's indicator preference are read by the component itself;
+    {{#unless this.chatStateManager.isFullPageActive}}
+      <DButton
+        class="btn-default sidebar-chat-toggle
+          {{if this.isActive 'sidebar-chat-toggle--active'}}"
+        @action={{this.toggleChat}}
+        @icon="d-chat"
+        @label="chat.title_capitalized"
+        @title={{if this.isActive "chat.close" "chat.title_capitalized"}}
+      >
+        {{! counts and the user's indicator preference are read by the component itself;
       it reads currentUser.user_option, so anonymous visitors don't get it }}
-      {{#if this.currentUser}}
-        <ChatHeaderIconUnreadIndicator />
-      {{/if}}
-    </DButton>
+        {{#if this.currentUser}}
+          <ChatHeaderIconUnreadIndicator />
+        {{/if}}
+      </DButton>
+    {{/unless}}
   </template>
 }
 
 export default apiInitializer((api) => {
   // lookup returns undefined when the chat plugin is off. Not userCanChat: anonymous
-  // visitors read public channels too, and this button is their way back to the forum.
+  // visitors read public channels too, and open them from here.
   if (!api.container.lookup("service:chat")) {
     return;
   }
