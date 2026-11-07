@@ -11,7 +11,7 @@ overrides or extends Horizon, nothing stands alone.
 ## What it does
 
 AI gists on Horizon's topic cards live in the standalone
-[Horizon AI Gists](https://github.com/somos-criptonautas/discourse-horizon-ai-gists)
+[Horizon AI Gists](https://github.com/criptonautas/discourse-horizon-ai-gists)
 component; install it alongside this one.
 
 ### Styling (`scss/`, loaded from `common/common.scss`)

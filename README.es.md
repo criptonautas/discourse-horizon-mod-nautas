@@ -11,7 +11,7 @@ sobrescribe o extiende Horizon, nada funciona por sí solo.
 ## Qué hace
 
 Los resúmenes de IA en las tarjetas de Horizon viven en el componente independiente
-[Horizon AI Gists](https://github.com/somos-criptonautas/discourse-horizon-ai-gists);
+[Horizon AI Gists](https://github.com/criptonautas/discourse-horizon-ai-gists);
 instálalo junto a este.
 
 ### Estilos (`scss/`, cargados desde `common/common.scss`)
