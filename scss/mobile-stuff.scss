@@ -105,6 +105,8 @@ body.f-nav-hidden:not(.archetype-regular,
   .sidebar-wrapper,
   .sidebar-hamburger-dropdown,
   .sidebar-footer-wrapper,
+  .chat-sidebar-back,
+  .sidebar-panel-header__row:first-child,
   .chat-channel-row__content {
     background: var(--d-content-background) !important;
   }

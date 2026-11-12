@@ -457,8 +457,15 @@ body.category .navigation-controls,
   }
 }
 
+// Chat and bot "back" (chat-sidebar-back.gjs): sticky like the panel headers' row above,
+// for the phone's dropdown, where it scrolls with the sections.
 .chat-sidebar-back {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  flex-shrink: 0;
   padding: var(--space-3) var(--space-4) var(--space-2);
+  background: var(--d-sidebar-background);
 }
 
 // Fix padding in search chat button on sidebar
