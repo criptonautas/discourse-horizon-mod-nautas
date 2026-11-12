@@ -40,7 +40,7 @@ function selectorsFor(tier) {
   return [...byCategory, ...byPath];
 }
 
-export default apiInitializer("1.8.0", (api) => {
+export default apiInitializer((api) => {
   const tiers = settings.blocked_sections || [];
   const user = api.getCurrentUser();
   // visibleGroups replaces groups (deprecation id: discourse.user.groups, 2026.8);

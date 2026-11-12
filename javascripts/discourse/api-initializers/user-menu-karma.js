@@ -1,7 +1,7 @@
-import { apiInitializer } from "discourse/lib/api";
-import { ajax } from "discourse/lib/ajax";
-import { i18n } from "discourse-i18n";
 import { themePrefix } from "virtual:theme";
+import { ajax } from "discourse/lib/ajax";
+import { apiInitializer } from "discourse/lib/api";
+import { i18n } from "discourse-i18n";
 
 const CLASS = "fk-d-menu__monthly-karma";
 const USER_INFO = ".custom-user-menu-content .fk-d-menu__user-info";

@@ -1,6 +1,6 @@
+import { themePrefix } from "virtual:theme";
 import { apiInitializer } from "discourse/lib/api";
 import { i18n } from "discourse-i18n";
-import { themePrefix } from "virtual:theme";
 
 export default apiInitializer((api) => {
   api.onPageChange(() => {

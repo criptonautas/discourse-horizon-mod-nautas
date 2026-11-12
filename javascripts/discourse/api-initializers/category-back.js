@@ -1,7 +1,7 @@
 import { schedule } from "@ember/runloop";
+import { themePrefix } from "virtual:theme";
 import { apiInitializer } from "discourse/lib/api";
 import { i18n } from "discourse-i18n";
-import { themePrefix } from "virtual:theme";
 
 // "Go back" on category and subcategory pages: up to the parent category, or to
 // /categories from a top-level one.

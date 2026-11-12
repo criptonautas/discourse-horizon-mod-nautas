@@ -1,6 +1,6 @@
 // {theme}/javascripts/discourse/api-initializers/init-theme.gjs
-import { apiInitializer } from "discourse/lib/api";
 import { schedule } from "@ember/runloop";
+import { apiInitializer } from "discourse/lib/api";
 
 // Doc categories, detected by the plugin's sidebar panel or known slugs.
 const DOC_CATEGORY_SLUGS = ["glosario", "wiki", "curso"];

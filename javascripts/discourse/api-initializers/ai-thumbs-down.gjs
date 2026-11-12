@@ -2,11 +2,11 @@ import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
 import { service } from "@ember/service";
-import { apiInitializer } from "discourse/lib/api";
+import { themePrefix } from "virtual:theme";
 import { ajax } from "discourse/lib/ajax";
 import { popupAjaxError } from "discourse/lib/ajax-error";
+import { apiInitializer } from "discourse/lib/api";
 import DButton from "discourse/ui-kit/d-button";
-import { themePrefix } from "virtual:theme";
 
 // AI bot conversations: the thumbs down is a reaction, not a flag.
 //
