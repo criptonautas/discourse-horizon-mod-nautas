@@ -265,4 +265,11 @@ export default apiInitializer((api) => {
     "horizon-advanced-composer",
     ADVANCED_COMPOSER_GROUPS.some((name) => myGroupNames.includes(name))
   );
+
+  // Only believers see the request to join lideres (scss/groups.scss). Same caveat: the
+  // hidden group must be visible to its members, or it is missing from this list.
+  document.body.classList.toggle(
+    "horizon-creyente",
+    myGroupNames.includes("hidden-creyentes")
+  );
 });
