@@ -434,6 +434,12 @@ body.category .navigation-controls,
   gap: var(--space-2);
 }
 
+// The bot's "new question" lives in the sidebar footer (sidebar-chat-toggle.gjs)
+.sidebar-container .ai-new-question-button__wrapper,
+.sidebar-hamburger-dropdown .ai-new-question-button__wrapper {
+  display: none;
+}
+
 .sidebar-chat-toggle {
   position: relative;
   flex: 1;

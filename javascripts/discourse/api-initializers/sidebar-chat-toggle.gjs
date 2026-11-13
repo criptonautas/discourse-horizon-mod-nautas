@@ -9,26 +9,58 @@ import ChatHeaderIconUnreadIndicator from "discourse/plugins/chat/discourse/comp
 // switch button (hidden in main.scss). Opening mirrors core's header chat icon
 // (chat/header/icon.gjs), so drawer vs full page follows the user's preference;
 // unlike that icon, a second press closes the drawer instead of going full page.
+//
+// In the AI bot's panel it gives way to the bot's "new question", moved here from the
+// top of the sidebar (hidden in main.scss), where it stacked under "back".
 class SidebarChatToggle extends Component {
+  @service appEvents;
   @service chat;
   @service chatStateManager;
   @service currentUser;
   @service header;
   @service router;
+  @service sidebarState;
+
+  get inAiPanel() {
+    return this.sidebarState.isCurrentPanel("ai-conversations");
+  }
+
+  // Inside the full-page chat, "back" at the top of its sidebar leads out
+  // (chat-sidebar-back.gjs), as on every other panel.
+  get showChatToggle() {
+    return !this.chatStateManager.isFullPageActive;
+  }
 
   get isActive() {
     return this.chatStateManager.isActive;
   }
 
-  @action
-  toggleChat() {
-    // On a phone the sidebar is the hamburger dropdown, and it stayed open over the chat.
-    // Through its own button, because that's what also releases the body scroll lock.
+  // On a phone the sidebar is the hamburger dropdown, and it stayed open over the chat.
+  // Through its own button, because that's what also releases the body scroll lock.
+  closeHamburger() {
     if (this.header.hamburgerVisible) {
       document
         .querySelector(".header-sidebar-toggle button, #toggle-hamburger-menu")
         ?.click();
     }
+  }
+
+  // Same as discourse-ai's ai-bot-sidebar-new-conversation.gjs routeTo
+  @action
+  newQuestion() {
+    this.closeHamburger();
+    this.appEvents.trigger("discourse-ai:new-conversation-btn-clicked");
+
+    if (this.router.currentRouteName !== "discourse-ai-bot-conversations") {
+      this.router.transitionTo("/discourse-ai/ai-bot/conversations");
+    } else {
+      document.getElementById("ai-bot-conversations-input")?.focus();
+    }
+  }
+
+  @action
+  toggleChat() {
+    this.closeHamburger();
 
     if (this.chatStateManager.isDrawerActive) {
       // same as the drawer's own close button (chat/navbar/close-drawer-button.gjs)
@@ -46,10 +78,17 @@ class SidebarChatToggle extends Component {
     }
   }
 
-  // Inside the full-page chat, "back" at the top of its sidebar leads out
-  // (chat-sidebar-back.gjs), as on every other panel.
   <template>
-    {{#unless this.chatStateManager.isFullPageActive}}
+    {{#if this.inAiPanel}}
+      {{#if this.currentUser}}
+        <DButton
+          class="btn-default sidebar-chat-toggle"
+          @action={{this.newQuestion}}
+          @icon="plus"
+          @label="discourse_ai.ai_bot.conversations.new"
+        />
+      {{/if}}
+    {{else if this.showChatToggle}}
       <DButton
         class="btn-default sidebar-chat-toggle
           {{if this.isActive 'sidebar-chat-toggle--active'}}"
@@ -64,7 +103,7 @@ class SidebarChatToggle extends Component {
           <ChatHeaderIconUnreadIndicator />
         {{/if}}
       </DButton>
-    {{/unless}}
+    {{/if}}
   </template>
 }
 
