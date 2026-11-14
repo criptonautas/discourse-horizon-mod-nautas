@@ -267,6 +267,11 @@ body.category .navigation-controls,
   z-index: 999;
 }
 
+// Boards (/boards): the link core adds to the default sidebar
+.sidebar-section-link-wrapper[data-list-item-name="boards"] {
+  display: none;
+}
+
 // Hiding voice chats sidebar for a while
 .sidebar-section-wrapper[data-section-name="voice-rooms"] {
   display: none;
