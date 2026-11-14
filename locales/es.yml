@@ -21,8 +21,6 @@ es:
   category_back: "Volver"
   ai_thumbs_down: "No me sirvió"
   podium_note: "Cada puesto recibe 3% del total de suscripciones (en Monero)."
-  btcpay_pos:
-    title: "Punto de venta BTCPay"
   category_intros:
     ghettos:
       title: "ghettos"

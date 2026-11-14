@@ -21,8 +21,6 @@ en:
   category_back: "Back"
   ai_thumbs_down: "Not helpful"
   podium_note: "Each one receives 3% of our total paid subscriptions (in Monero)."
-  btcpay_pos:
-    title: "BTCPay point of sale"
   category_intros:
     ghettos:
       title: "ghettos"
