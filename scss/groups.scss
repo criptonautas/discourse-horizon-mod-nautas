@@ -54,11 +54,12 @@
 }
 
 // Request to join lideres: believers only (init.gjs sets the class). On the group box,
-// the group page and the group card.
+// the group page, the group card and the in-post button (join-group-button.gjs).
 body:not(.horizon-creyente) {
   .group-box[data-group-name="lideres"] .group-membership-button,
   .group-lideres .group-details-button .group-membership-button,
-  .group-card-lideres .group-membership-button {
+  .group-card-lideres .group-membership-button,
+  .d-wrap[data-wrap="join-group"][data-group="lideres"] {
     display: none;
   }
 }

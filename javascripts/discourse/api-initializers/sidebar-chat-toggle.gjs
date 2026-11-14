@@ -25,10 +25,14 @@ class SidebarChatToggle extends Component {
     return this.sidebarState.isCurrentPanel("ai-conversations");
   }
 
-  // Inside the full-page chat, "back" at the top of its sidebar leads out
-  // (chat-sidebar-back.gjs), as on every other panel.
+  // Only for who can open chat: without access (or with chat off in their
+  // preferences) /chat bounced them to the homepage. Inside the full-page chat,
+  // "back" at the top of its sidebar leads out (chat-sidebar-back.gjs).
   get showChatToggle() {
-    return !this.chatStateManager.isFullPageActive;
+    const canOpen = this.currentUser
+      ? this.chat.userCanChat
+      : this.chat.anonymousUserCanViewPublicChat;
+    return canOpen && !this.chatStateManager.isFullPageActive;
   }
 
   get isActive() {
