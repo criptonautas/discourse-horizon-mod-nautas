@@ -412,6 +412,37 @@ body.category .navigation-controls,
   background: var(--d-sidebar-background);
 }
 
+// Back to forum, every panel (core's component): no accent hover, which no other
+// sidebar link has; a slightly larger label on desktop; and a short, bolder chevron
+// drawn in CSS in place of the icon pack's long, thin arrow (the svg can't be swapped
+// from CSS, and replacing arrow-left globally would change every other arrow).
+.sidebar-sections__back-to-forum {
+  &:hover,
+  &:focus {
+    color: var(--d-sidebar-link-color);
+  }
+
+  .d-icon {
+    display: none;
+  }
+
+  &::before {
+    content: "";
+    flex-shrink: 0;
+    width: 0.4em;
+    height: 0.4em;
+    margin: 0 calc(var(--d-sidebar-section-link-prefix-margin-right) + 0.1em) 0
+      0.2em;
+    border-bottom: 2px solid var(--d-sidebar-link-icon-color);
+    border-left: 2px solid var(--d-sidebar-link-icon-color);
+    transform: rotate(45deg);
+  }
+
+  @include viewport.from(lg) {
+    font-size: var(--font-up-1);
+  }
+}
+
 // A sticky row stops below its scroller's top padding, which showed as a gap above
 // "Back" on scroll: the row above carries that 0.5rem (another component's value).
 .sidebar-wrapper .sidebar-sections:has(> .sidebar-panel-header) {
@@ -1440,8 +1471,9 @@ body.doc-simple-mode .topic-post[data-post-number="1"] .cooked {
   padding-top: revert-rule;
 }
 
-// Hide tags on questions
-body.category-preguntas li:has(.tag-drop) {
+// Tag filter off in the breadcrumbs of the hide_tag_filter_categories setting
+// (body class from init.gjs).
+body.horizon-no-tag-filter li:has(.tag-drop) {
   display: none;
 }
 
@@ -2036,8 +2068,23 @@ body.embed-mode {
   .more-topics__container,
   .container.posts .topic-navigation,
   .embed-floating-buttons,
-  .post-action-menu__monero-tip {
+  .post-action-menu__monero-tip,
+  // The topic map's tools: summaries (core and AI), assign, and its links.
+  .summarization-button,
+  .ai-summarization-button,
+  .topic-map__additional-contents,
+  .topic-map__links-trigger,
+  .assign-topic,
+  .post-controls .assign {
     display: none;
+  }
+
+  // Names, avatars, dates and the views and likes counts read as plain text:
+  // in the blog they led away to profiles, permalinks and lists.
+  .topic-post :is(.names a, .topic-avatar a, .post-info a),
+  .topic-map__stats :is(a, button) {
+    pointer-events: none;
+    cursor: default;
   }
 }
 
@@ -2266,9 +2313,8 @@ font-size: var(--font-up-1);
 }
 
 .nested-view:not(.nested-context-view) > .nested-view__controls {
-  // Above the posts it scrolls over, under the header (1000) — same layer as the
-  // sticky .navigation-controls.
-  z-index: 999;
+  // Origin's z("timeline") (100) keeps it above the posts. Not 999: that also put it
+  // over the composer (400), user cards (500) and dropdowns (300).
   padding: 0.47rem 1rem;
 }
 

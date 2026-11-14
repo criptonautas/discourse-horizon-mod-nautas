@@ -247,6 +247,19 @@ export default apiInitializer((api) => {
     document.body.classList.toggle("leaderboard-page", isLeaderboard);
   });
 
+  // Tag filter off in these categories' breadcrumbs (scss/main.scss).
+  const noTagFilterIds = settings.hide_tag_filter_categories
+    .split("|")
+    .filter(Boolean)
+    .map(Number);
+  const discovery = api.container.lookup("service:discovery");
+  api.onPageChange(() => {
+    document.body.classList.toggle(
+      "horizon-no-tag-filter",
+      noTagFilterIds.includes(discovery.category?.id)
+    );
+  });
+
   // Composer entries that only these groups keep (scss/main.scss hides the rest for
   // everyone else). Set once: group membership does not change mid-session.
   //

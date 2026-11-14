@@ -7,6 +7,7 @@ es:
     settings:
       blocked_sections: "Una fila por nivel. `key` enlaza la fila con su título/mensaje en la pestaña de traducciones. Si `allowed_groups` queda vacío, el nivel aplica a todos. `paths` es una lista separada por comas de rutas para lo que no sea una categoría. Si `cta_url` queda vacío se oculta el segundo botón."
       chart_font_size: "Tamaño de letra (px) de los gráficos [chart] dentro de los posts. El expandido usa 4 px más."
+      hide_tag_filter_categories: "Categorías cuya lista de temas oculta el filtro de etiquetas en las migas de pan. Las subcategorías se agregan por separado."
   blocked_sidebar:
     dismiss: "seguir navegando"
     cta: "entrar ahora"
