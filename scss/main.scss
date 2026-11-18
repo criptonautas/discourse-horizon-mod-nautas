@@ -506,8 +506,16 @@ body.category .navigation-controls,
   top: 0;
   z-index: 2;
   flex-shrink: 0;
-  padding: var(--space-3) var(--space-4) var(--space-2);
+
+  // The docs/admin row's spacing: its 0.5rem top, and the sections' --space-2 side
+  // (core's --sidebar-section-wrapper-padding), so both backs sit in the same place.
+  padding: 0.5rem var(--space-2) 0;
   background: var(--d-sidebar-background);
+
+  // The phone's dropdown already pads its sections on the sides.
+  .sidebar-hamburger-dropdown & {
+    padding-inline: 0;
+  }
 }
 
 // Fix padding in search chat button on sidebar
@@ -2206,10 +2214,6 @@ font-size: var(--font-up-1);
   width: 1.2rem;
   border-radius: 0.15rem;
   padding-bottom: 0.45rem;
-}
-
-.about:not(.collapsed-info) .nationalflag-usersummary {
-  display: none;
 }
 
 // More padding on composer
