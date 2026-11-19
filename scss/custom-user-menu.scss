@@ -38,9 +38,26 @@
 // (label on one line, score on the next). Spans every column of the upstream grid
 // instead of naming an area, because upstream's equally specific
 // grid-template-areas loads after this file and would erase an added one.
+// Primary group, under the @username. `img.avatar` outranks upstream's `.avatar`
+// so the avatar can grow down to cover this row too.
+.custom-user-menu-content .fk-d-menu__user-info img.avatar {
+  grid-row: 1 / span 3;
+}
+
+.custom-user-menu-content .fk-d-menu__primary-group {
+  grid-column: 2;
+  grid-row: 3;
+  min-width: 0;
+  overflow: hidden;
+  font-size: var(--font-down-1);
+  color: var(--primary-medium);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .custom-user-menu-content .fk-d-menu__monthly-karma {
   grid-column: 1 / -1;
-  grid-row: 3;
+  grid-row: 4;
   display: flex;
   flex-direction: column;
   min-width: 0;

@@ -4,10 +4,12 @@ import { apiInitializer } from "discourse/lib/api";
 import { i18n } from "discourse-i18n";
 
 const CLASS = "fk-d-menu__monthly-karma";
+const GROUP_CLASS = "fk-d-menu__primary-group";
 const USER_INFO = ".custom-user-menu-content .fk-d-menu__user-info";
 
 export default apiInitializer((api) => {
-  if (!api.getCurrentUser()) {
+  const currentUser = api.getCurrentUser();
+  if (!currentUser) {
     return;
   }
 
@@ -28,7 +30,44 @@ export default apiInitializer((api) => {
     return scoreRequest;
   }
 
+  // Primary group from the user card; null when the user has none.
+  let groupRequest;
+  function primaryGroup() {
+    groupRequest ||= ajax(`/u/${currentUser.username}/card.json`)
+      .then((json) => json?.user?.primary_group_name || null)
+      .catch(() => {
+        groupRequest = null; // let the next open retry
+        return null;
+      });
+    return groupRequest;
+  }
+
+  async function addGroup(userInfo) {
+    if (userInfo.querySelector(`.${GROUP_CLASS}`)) {
+      return;
+    }
+
+    const line = document.createElement("span");
+    line.className = GROUP_CLASS;
+    userInfo.append(line);
+
+    const name = await primaryGroup();
+
+    if (!line.isConnected) {
+      return;
+    }
+
+    if (!name) {
+      line.remove();
+      return;
+    }
+
+    line.textContent = name;
+  }
+
   async function decorate(userInfo) {
+    addGroup(userInfo);
+
     if (userInfo.querySelector(`.${CLASS}`)) {
       return;
     }
