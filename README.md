@@ -124,8 +124,6 @@ hidden still shows up in the post.
 - **`sidebar-chat-toggle.gjs`** — a chat button with an unread indicator next to the
   light/dark selector in the sidebar footer, replacing the sidebar's chat panel switch.
   Opens drawer or full page following the user's preference; a second press closes it.
-- **`user-menu-karma.js`** — shows the user's monthly karma (from `/leaderboard`,
-  monthly period) as a chip in the user menu. One request per page load.
 
 ### Markup and assets
 
@@ -156,9 +154,9 @@ hidden still shows up in the post.
   anonymous gating until they refresh.
 - **Selectors that depend on core/Horizon markup.** No outlet exists for these, so a
   Discourse or Horizon upgrade can silently disable them: the sidebar-toggle chain and
-  the `"closed"`/`"cerrado"` button text match (`init.gjs`), the docs topic-list
-  reordering (`init.gjs`), and the user-menu karma line (`user-menu-karma.js`). Each
-  degrades to a no-op, so smoke-test the four after every upgrade.
+  the `"closed"`/`"cerrado"` button text match (`init.gjs`), and the docs topic-list
+  reordering (`init.gjs`). Each degrades to a no-op, so smoke-test the three after
+  every upgrade.
 
 - **Docs A–Z is client-side.** Discourse cannot order a topic list by title server-side
   (`TopicQuery::SORTABLE_MAPPING` has no `title`), so `init.gjs` exhausts the paginated

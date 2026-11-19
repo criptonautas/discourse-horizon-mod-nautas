@@ -34,52 +34,6 @@
   border-radius: var(--d-border-radius);
 }
 
-// Karma chip, appended by user-menu-karma.js: a full-width row under the avatar
-// (label on one line, score on the next). Spans every column of the upstream grid
-// instead of naming an area, because upstream's equally specific
-// grid-template-areas loads after this file and would erase an added one.
-// Primary group, under the @username. `img.avatar` outranks upstream's `.avatar`
-// so the avatar can grow down to cover this row too.
-.custom-user-menu-content .fk-d-menu__user-info img.avatar {
-  grid-row: 1 / span 3;
-}
-
-.custom-user-menu-content .fk-d-menu__primary-group {
-  grid-column: 2;
-  grid-row: 3;
-  min-width: 0;
-  overflow: hidden;
-  font-size: var(--font-down-1);
-  color: var(--primary-medium);
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.custom-user-menu-content .fk-d-menu__monthly-karma {
-  grid-column: 1 / -1;
-  grid-row: 4;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  margin-top: 0.75rem;
-  padding: 0.5rem 0.75rem;
-  border-left: 3px solid var(--tertiary);
-  border-radius: var(--d-border-radius);
-  background: var(--d-sidebar-highlight-background, var(--primary-very-low));
-  line-height: var(--line-height-medium);
-
-  strong {
-    font-size: var(--font-down-1);
-    color: var(--d-sidebar-active-color, var(--primary));
-  }
-
-  span {
-    font-size: var(--font-up-1);
-    font-weight: 700;
-    color: var(--tertiary);
-  }
-}
-
 // Mobile: the profile menu as a right-hand panel, like core's user menu.
 //
 // The component leaves float-kit's @modalForMobile commented out, so on a phone the

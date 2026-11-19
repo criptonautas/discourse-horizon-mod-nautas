@@ -125,8 +125,6 @@ marcada y después oculta igual aparece en el post.
   selector claro/oscuro en el pie de la barra lateral, en lugar del botón que cambia al
   panel de chat. Abre el cajón o la página completa según la preferencia del usuario; una
   segunda pulsación lo cierra.
-- **`user-menu-karma.js`**: muestra el karma mensual del usuario (de `/leaderboard`,
-  periodo mensual) como chip en el menú de usuario. Una petición por carga de página.
 
 ### Marcado y recursos
 
@@ -157,9 +155,9 @@ marcada y después oculta igual aparece en el post.
   restricción anónima hasta que refresque.
 - **Selectores que dependen del marcado del núcleo/Horizon.** No existe outlet para estos, así que una
   actualización de Discourse u Horizon puede desactivarlos en silencio: la cadena del interruptor de la barra lateral y
-  la coincidencia del texto de botón `"closed"`/`"cerrado"` (`init.gjs`), el reordenamiento de la
-  lista de temas de docs (`init.gjs`) y la línea de karma del menú de usuario (`user-menu-karma.js`). Cada uno
-  degrada a un no-op, así que prueba los cuatro tras cada actualización.
+  la coincidencia del texto de botón `"closed"`/`"cerrado"` (`init.gjs`) y el reordenamiento de la
+  lista de temas de docs (`init.gjs`). Cada uno
+  degrada a un no-op, así que prueba los tres tras cada actualización.
 
 - **El orden A–Z de docs es del lado del cliente.** Discourse no puede ordenar una lista de temas por título en el servidor
   (`TopicQuery::SORTABLE_MAPPING` no tiene `title`), así que `init.gjs` agota la lista
