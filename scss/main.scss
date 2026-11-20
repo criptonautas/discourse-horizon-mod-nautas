@@ -1115,6 +1115,12 @@ nav.c-footer .c-footer__item {
   font-size: 0.75em;
 }
 
+// Core's ellipsis cut the staff shield: the line overflowed its box by ~2px
+// shortcut: a very long name next to an icon can now overflow instead of truncating; revisit if one does
+.user-profile-names__primary:has(> .d-icon) {
+  overflow: visible;
+}
+
 // Group naming ordering [EXPERIMENTAL]
 .group-info-mention-name {
   display: none;
