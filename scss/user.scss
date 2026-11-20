@@ -183,3 +183,10 @@
   padding: 1rem !important;
   margin-bottom: 1rem;
 }
+
+// "Tier [karma]" on user cards, profiles and the avatar menu
+// (components/tier-karma.gjs).
+.nautas-tier-karma {
+  font-size: var(--font-down-1);
+  color: var(--primary-medium);
+}

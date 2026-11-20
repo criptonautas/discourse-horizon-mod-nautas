@@ -124,6 +124,10 @@ hidden still shows up in the post.
 - **`sidebar-chat-toggle.gjs`** — a chat button with an unread indicator next to the
   light/dark selector in the sidebar footer, replacing the sidebar's chat panel switch.
   Opens drawer or full page following the user's preference; a second press closes it.
+- **`tier-karma.gjs`** — "Tier [karma]" under the name on user cards, profiles and the
+  avatar menu: the member's tier and their karma this calendar month, hidden when 0.
+  Reads `nautas_tier` and `nautas_monthly_karma` from Power Tools Nautas; the menu
+  needs discourse-custom-user-menu-nautas.
 
 ### Markup and assets
 

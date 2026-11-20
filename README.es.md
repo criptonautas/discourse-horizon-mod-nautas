@@ -125,6 +125,10 @@ marcada y después oculta igual aparece en el post.
   selector claro/oscuro en el pie de la barra lateral, en lugar del botón que cambia al
   panel de chat. Abre el cajón o la página completa según la preferencia del usuario; una
   segunda pulsación lo cierra.
+- **`tier-karma.gjs`**: «Tier [karma]» bajo el nombre en las tarjetas de usuario, los
+  perfiles y el menú del avatar: el tier del miembro y su karma del mes calendario,
+  oculto si es 0. Lee `nautas_tier` y `nautas_monthly_karma` de Power Tools Nautas; el
+  menú necesita discourse-custom-user-menu-nautas.
 
 ### Marcado y recursos
 
